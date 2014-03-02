@@ -1,0 +1,145 @@
+<!-- views/index.html -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SendGrid API Demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="stylesheet" href="components/reveal.js/css/reveal.min.css">
+<link rel="stylesheet" href="components/reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="components/reveal.js/lib/css/zenburn.css">
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script>
+var vote_values = ["PHP", "Python", "Ruby", "Javascript", "Go", "C#", "C", "C++", "ObjC", "Other"];
+var constant = {};
+var arrayLength = vote_values.length;
+for (var i = 0; i < arrayLength; i++) {
+    constant[vote_values[i]] = i;
+}
+var chart;
+$(document).ready(function (){
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            type: 'bar'
+        },
+        title: {
+            text: 'What\'s Your Favorite Programming Language?'
+        },
+        xAxis: {
+            categories: vote_values
+        },
+        yAxis: {
+            title: {
+                text: 'Number of votes for each programming language'
+            }
+        },
+        series: [{
+            name: 'Aggregated Votes',
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        }]
+    });
+});
+</script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<section>
+    <img src="img/sendgrid-logo.png"></img>
+    <h3>API Demo</h3>
+    <p>Elmer Thomas, Hacker in Residence at SendGrid</p>
+    <p><a href="http://www.twitter.com/thinkingserious">@thinkingserious</a>
+    <p>March 1, 2014</p>
+</section>
+
+<section>
+    <p>Email <strong>inbound@elmer.bymail.in</strong><br /> with your selected language in the subject to vote.</p>
+    <div id="container" style="min-width: 400px; height: 370px; margin: 0 auto; padding: 20px"></div>
+</section>
+
+<section>
+    <section>
+        <h2>Source Code</h2>
+        <p>
+            You can find the full source code at<br />Github under my <a href="http://www.github.com/thinkingserious">thinkingserious</a> account.
+        </p>
+        <a href="#" class="image navigate-down">
+            <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+        </a>
+    </section>
+    <section>
+        <h2>Incoming</h2>
+        <pre><code data-trim contenteditable>
+app.post('/inbound', function(req, res){
+    var parsed_envelope = JSON.parse(req.body.envelope);
+    var to = parsed_envelope.from
+    var vote = req.body.subject;
+    res.send(200);
+});
+        </code></pre>
+    </section>
+    <section>
+        <h2>Sending</h2>
+        <pre><code data-trim contenteditable>
+// Send confirmation to the voter via SendGrid
+var Email = sendgrid.Email;
+var email = new Email({
+    to: to,
+    from: "community@sendgrid.com",
+    subject: "Your vote for " + vote + " has been recorded!",
+    text: "Contents of the email go here."
+});
+sendgrid.send(email, function(err, json) {
+    if (err) { 
+        console.error(err);
+        console.log(err.message);
+    } else {
+        console.log("Email sent to " + to);
+    }
+});
+        </code></pre>
+    </section>
+</section>
+
+<section>
+    <h2>Questions?</h2>
+    <p>
+        You can reach me at <a href="mailto:elmer.thomas@sendgrid.com">Elmer.Thomas@SendGrid.com</a><br />Happy Hacking!
+    </p>
+</section>
+
+</div>
+</div>
+<script src="components/reveal.js/lib/js/head.min.js"></script>
+<script src="components/reveal.js/js/reveal.min.js"></script>
+<script type="text/javascript">
+Reveal.initialize({
+    history: true,
+    progress: true,
+    controls: true,
+    center: true,
+    leap: {
+        naturalSwipe: false, // Invert swipe gestures
+        pointerOpacity: 0.5, // Set pointer opacity to 0.5
+        pointerColor: '#d80000' // Red pointer
+    },
+    dependencies: [
+        { src: 'components/reveal.js/plugin/leap/leap.js', async: true },
+        { src: 'components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+    ]
+});
+// Live vote updates for the chart
+var socket = io.connect("http://localhost:3000");
+socket.on("message", function(vote){
+    if (vote in constant) {
+        votes = chart.series[0].data[constant[vote]].y;
+        chart.series[0].data[constant[vote]].update(votes+1);
+    }
+});
+</script>
+</body>
+</html>
