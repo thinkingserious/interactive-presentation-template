@@ -20,10 +20,11 @@ This software was tested on a Macbook Pro Retina and a Macbook Air, both running
 * setup your [Incoming Parse API webhook](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html) in your SendGrid account
 	* setup your hostname and MX records per [these instructions](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html)
 	* e.g. 
-	* my hostname is elmer.bymail.in
-	* my URL is https://38b1f7bz.ngrok.com/inbound
+		* my hostname is elmer.bymail.in
+		* my URL is https://38b1f7bz.ngrok.com/inbound
 	* for more help on setup, check the [docs](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html) or reach out to me.
 * go to http://localhost:3000 and try using the leapmotion to navigate to the next page (voting)
+	* currently, you can swipe backwards/forwards/up/down and point for a simulated laser pointer. 
 * send an email to inbound@the-host-you-setup-for-the-parse-webhook (e.g. mine would be inbound@elmer.bymail.in) with Python as the subject, the vote should register automatically in a few seconds
 * check your email inbox for an email from community@sendgrid.com. Say hi :)
 * check your DB and verify the new entry
