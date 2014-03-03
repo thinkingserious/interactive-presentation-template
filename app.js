@@ -2,7 +2,8 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , io = require('socket.io')
-  , dotenv = require('dotenv');
+  , dotenv = require('dotenv')
+  , mysql = require('mysql');
 
 var global_socket;
 dotenv.load();
@@ -50,11 +51,10 @@ app.post('/inbound', function(req, res){
     var vote = req.body.subject;
 
     // Store the votes in a DB
-    var mysql = require('mysql');
     var connection = mysql.createConnection({
-        host : '127.0.0.1',
-        database : 'sendgrid-leapmotion-vote',
-        user : 'root',
+        host : process.env.MYSQL_HOST,
+        database : process.env.MYSQL_DB,
+        user : process.env.MYSQL_USER,
         password : process.env.MYSQL_PASSWORD
     });
     connection.connect(function(err){

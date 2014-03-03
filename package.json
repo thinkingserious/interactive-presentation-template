@@ -1,6 +1,6 @@
 {
-  "name": "reveal-socketio",
-  "version": "0.0.1",
+  "name": "interactive-presentation-template",
+  "version": "1.0",
   "private": true,
   "scripts": {
     "start": "node app"
@@ -11,8 +11,8 @@
     "socket.io": "^0.9.16",
     "sendgrid": "^1.0.2",
     "dotenv": "^0.2.5",
-	"request": "~2.27.0",
-    "node-mysql": "^0.3.7"
+    "request": "~2.27.0",
+    "mysql": "^2.1.0"
   },
   "devDependencies": {
     "grunt": "~0.4.1",

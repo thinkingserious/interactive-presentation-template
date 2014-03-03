@@ -1,6 +1,7 @@
 - create YouTube demo
 - modify the reply email to give a different message if the vote was not recorded
 - add a check to see if the user voted correctly, if not tell them how
+- add a time_sent field to the DB
 - add duplicate voting protection
 - time box the voting
 - update with programming style guidelines 
