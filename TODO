@@ -7,6 +7,6 @@
 - update with programming style guidelines 
 - make voting easily configurable
 - fix HighCharts on Android Chrome 
-- have notes show up on Google Glass
+[done] - have notes show up on Google Glass
 - control slides from Google Glass
 - update the demo slides with SendGrid style guidelines
