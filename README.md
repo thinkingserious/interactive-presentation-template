@@ -1,4 +1,4 @@
-This code allows you to create a [Reveal.js](http://lab.hakim.se/reveal-js) presentation, controlled by hand motions through a [LeapMotion](https://www.leapmotion.com) device. Using [SendGrid](http://www.sendgrid.com), you can conduct a live voting session where votes are cast via email and updated in real-time using [express](http://expressjs.com), [socket.io](http://socket.io) and [Highcharts.js](http://www.highcharts.com).
+This code allows you to create a [Reveal.js](http://lab.hakim.se/reveal-js) presentation, controlled by hand motions through a [LeapMotion](https://www.leapmotion.com) device. Using [SendGrid](http://www.sendgrid.com), you can conduct a live voting session where votes are cast via email and updated in real-time using [express](http://expressjs.com), [socket.io](http://socket.io) and [Highcharts.js](http://www.highcharts.com). If you have Google Glass, you can get a teleprompter that displays your slide notes as you go through each slide.
 
 There will be a [companion blog post](http://sendgrid.com/blog) at SendGrid's blog. When it's live I will update the link here.
 
@@ -29,6 +29,7 @@ This software was tested on a Macbook Pro Retina and a Macbook Air, both running
 * check your email inbox for an email from community@sendgrid.com. Say hi :)
 * check your DB and verify the new entry
 * modify the slides at views/index.html and keep your assets in the /public folder
+* if you have Google Glass, setup an App on App Engine and update the credentials in your .env file
 
 ## Info & Help ##
 

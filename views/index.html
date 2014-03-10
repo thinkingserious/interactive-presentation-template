@@ -54,22 +54,37 @@ $(document).ready(function (){
     <p>Elmer Thomas, Hacker in Residence at SendGrid</p>
     <p><a href="http://www.twitter.com/thinkingserious">@thinkingserious</a>
     <p>March 1, 2014</p>
+
+    <aside class="notes">
+    Brief words about SendGrid and myself.
+    </aside>
 </section>
 
 <section>
     <p>Email <strong>inbound@elmer.bymail.in</strong><br /> with your selected language in the subject to vote.</p>
     <div id="container" style="min-width: 400px; height: 370px; margin: 0 auto; padding: 20px"></div>
+
+    <aside class="notes">
+    Explain how the Incoming Parse API works.
+    1. MX Records
+    2. Webhook
+    3. JSON package
+    </aside>
 </section>
 
 <section>
     <section>
         <h2>Source Code</h2>
         <p>
-            You can find the full source code at<br />Github under my <a href="http://www.github.com/thinkingserious">thinkingserious</a> account.
+        You can find the full source code at<br />GitHub under my <a href="http://www.github.com/thinkingserious">thinkingserious</a> account.
         </p>
         <a href="#" class="image navigate-down">
             <img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
         </a>
+
+        <aside class="notes">
+        Talk about availability of the source code.
+        </aside>
     </section>
     <section>
         <h2>Incoming</h2>
@@ -81,6 +96,10 @@ app.post('/inbound', function(req, res){
     res.send(200);
 });
         </code></pre>
+
+        <aside class="notes">
+        Talk through the webhook code.
+        </aside>
     </section>
     <section>
         <h2>Sending</h2>
@@ -102,14 +121,22 @@ sendgrid.send(email, function(err, json) {
     }
 });
         </code></pre>
+
+        <aside class="notes">
+        Talk about the code that sends out the email.
+        </aside>
     </section>
 </section>
 
 <section>
     <h2>Questions?</h2>
     <p>
-        You can reach me at <a href="mailto:elmer.thomas@sendgrid.com">Elmer.Thomas@SendGrid.com</a><br />Happy Hacking!
+    You can reach me at <a href="mailto:elmer.thomas@sendgrid.com">Elmer.Thomas@SendGrid.com</a><br />Happy Hacking!
     </p>
+
+    <aside class="notes">
+    Offer direct support at the event.
+    </aside>
 </section>
 
 </div>
@@ -117,6 +144,15 @@ sendgrid.send(email, function(err, json) {
 <script src="components/reveal.js/lib/js/head.min.js"></script>
 <script src="components/reveal.js/js/reveal.min.js"></script>
 <script type="text/javascript">
+// Live vote updates for the chart
+var socket = io.connect('http://localhost:3000');
+    socket.on('message', function(vote){
+        if (vote in constant) {
+            votes = chart.series[0].data[constant[vote]].y;
+            chart.series[0].data[constant[vote]].update(votes+1);
+    }
+});
+
 Reveal.initialize({
     history: true,
     progress: true,
@@ -132,14 +168,16 @@ Reveal.initialize({
         { src: 'components/reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
     ]
 });
-// Live vote updates for the chart
-var socket = io.connect("http://localhost:3000");
-socket.on("message", function(vote){
-    if (vote in constant) {
-        votes = chart.series[0].data[constant[vote]].y;
-        chart.series[0].data[constant[vote]].update(votes+1);
-    }
-});
+
+Reveal.addEventListener( 'slidechanged', function( event ) {    
+    //Get the note text
+    var current_slide = Reveal.getCurrentSlide();
+    var nodes = current_slide.childNodes;
+    var len = nodes.length;
+    var note = nodes.item(len-2);
+    socket.emit('notes', note.textContent);
+} );
+
 </script>
 </body>
 </html>

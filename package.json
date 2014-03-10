@@ -1,6 +1,6 @@
 {
   "name": "interactive-presentation-template",
-  "version": "1.0",
+  "version": "0.4.1",
   "private": true,
   "scripts": {
     "start": "node app"
@@ -12,10 +12,11 @@
     "sendgrid": "^1.0.2",
     "dotenv": "^0.2.5",
     "request": "~2.27.0",
-    "mysql": "^2.1.0"
+    "mysql": "^2.1.0",
+    "googleapis": "^0.6.1"
   },
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": "^0.4.3",
     "grunt-develop": "~0.2.2",
     "grunt-contrib-watch": "~0.5.3",
     "request": "~2.27.0",
