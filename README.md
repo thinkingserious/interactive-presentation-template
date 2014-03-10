@@ -5,7 +5,8 @@ There will be a [companion blog post](http://sendgrid.com/blog) at SendGrid's bl
 ## Prerequisites ##
 
 * [LeapMotion hardware](https://www.leapmotion.com) - if you want to control your slides using hand motions
-* [SendGrid account](http://www.sendgrid.com)
+* [SendGrid account](http://www.sendgrid.com) - to receive live interactive votes via email
+* [Google Glass](http://www.google.com/glass) - if you want the teleprompter feature
 
 This software was tested on a Macbook Pro Retina and a Macbook Air, both running Mavericks. If you test on Linux or Windows, please let me know the results.
 
