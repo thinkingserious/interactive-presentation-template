@@ -169,13 +169,21 @@ Reveal.initialize({
     ]
 });
 
-Reveal.addEventListener( 'slidechanged', function( event ) {    
-    //Get the note text
+function getNoteText() {
     var current_slide = Reveal.getCurrentSlide();
     var nodes = current_slide.childNodes;
     var len = nodes.length;
     var note = nodes.item(len-2);
+    // push note text to Glass
     socket.emit('notes', note.textContent);
+};
+
+Reveal.addEventListener( 'ready', function( event ) {
+    getNoteText();
+} );
+
+Reveal.addEventListener( 'slidechanged', function( event ) {    
+    getNoteText();
 } );
 
 </script>

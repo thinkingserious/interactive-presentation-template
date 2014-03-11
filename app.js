@@ -125,7 +125,6 @@ app.get('/oauth2callback', function (req, res) {
 
 // The slide presentation is served up here
 app.get('/presentation', function(req, res){
-    gotToken("Hello Universe");
     res.sendfile(__dirname + '/views/index.html');
 });
 
