@@ -1,5 +1,7 @@
 This code allows you to create a [Reveal.js](http://lab.hakim.se/reveal-js) presentation, controlled by hand motions through a [LeapMotion](https://www.leapmotion.com) device. Using [SendGrid](http://www.sendgrid.com), you can conduct a live voting session where votes are cast via email and updated in real-time using [express](http://expressjs.com), [socket.io](http://socket.io) and [Highcharts.js](http://www.highcharts.com). If you have Google Glass, you can get a teleprompter that displays your slide notes as you go through each slide.
 
+[View a video demo](https://www.youtube.com/watch?v=Pu1QE5hh9EY) of the final product to get a feel for the completed project. The video is less than 5 minutes.
+
 There will be a [companion blog post](http://sendgrid.com/blog) at SendGrid's blog. When it's live I will update the link here.
 
 ## Prerequisites ##
