@@ -2,7 +2,7 @@ This code allows you to create a [Reveal.js](http://lab.hakim.se/reveal-js) pres
 
 [View a video demo](https://www.youtube.com/watch?v=Pu1QE5hh9EY) of the final product to get a feel for the completed project. The video is less than 5 minutes.
 
-There will be a [companion blog post](http://sendgrid.com/blog) at SendGrid's blog. When it's live I will update the link here.
+There is a [companion blog post](http://sendgrid.com/blog/ultimate-interactive-presentation/) at SendGrid's blog.
 
 ## Prerequisites ##
 
