@@ -10,3 +10,5 @@
 [done] - have notes show up on Google Glass
 - control slides from Google Glass
 - update the demo slides with SendGrid style guidelines
+- allow use of laptop as access point for faster interactive voting
+- implement Wearscript for faster interaction with Glass and allow for slide control for those without the Leap Motion
