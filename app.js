@@ -11,9 +11,8 @@ var global_socket;
 dotenv.load();
 var e = module.exports;
 e.ENV = process.env.NODE_ENV || 'development';
-var sendgrid_username = process.env.SENDGRID_USERNAME;
-var sendgrid_password = process.env.SENDGRID_PASSWORD;
-sendgrid = require('sendgrid')(sendgrid_username, sendgrid_password);
+var sendgrid_apikey = process.env.SENDGRID_APIKEY;
+sendgrid = require('sendgrid')(sendgrid_apikey);
 
 var oauth2Client = new OAuth2Client(process.env.GLASS_CLIENT_ID,
     process.env.GLASS_SECRET, process.env.GLASS_CALLBACK);
@@ -46,7 +45,7 @@ serv_io.sockets.on('connection', function (socket){
     });
 });
 
-// We have the token, use it to post to timeline
+// We have the token, use it to post to Google Glass timeline
 var success = function (data) {
     console.log('success', data);
 };

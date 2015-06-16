@@ -10,16 +10,16 @@ There is a [companion blog post](http://sendgrid.com/blog/ultimate-interactive-p
 * [SendGrid account](http://www.sendgrid.com) - to receive live interactive votes via email
 * [Google Glass](http://www.google.com/glass) - if you want the teleprompter feature
 
-This software was tested on a Macbook Pro Retina and a Macbook Air, both running Mavericks. If you test on Linux or Windows, please let me know the results.
+This software was tested on a Macbook Pro Retina and a Macbook Air, both running Yosemite. If you test on Linux or Windows, please let me know the results.
 
 ## Usage ##
 
 * clone this repository
-* create a local MySQL database, the schema is at DB/votes.sql
+* create a local MySQL database, the schema is at [DB/votes.sql](https://github.com/thinkingserious/interactive-presentation-template/blob/master/DB/votes.sql)
 * rename .EXAMPLE.env to .env and update the credentials
-* run npm install in the root directory of the project
-* run grunt
-* run ngrock 3000
+* run `npm install` in the root directory of the project
+* run `grunt`
+* run `ngrok 3000`
 * setup your [Incoming Parse API webhook](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html) in your SendGrid account
 	* setup your hostname and MX records per [these instructions](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html)
 	* e.g. 
@@ -31,8 +31,8 @@ This software was tested on a Macbook Pro Retina and a Macbook Air, both running
 * send an email to inbound@the-host-you-setup-for-the-parse-webhook (e.g. mine would be inbound@elmer.bymail.in) with Python as the subject, the vote should register automatically in a few seconds
 * check your email inbox for an email from community@sendgrid.com. Say hi :)
 * check your DB and verify the new entry
-* modify the slides at views/index.html and keep your assets in the /public folder
-* if you have Google Glass, setup an App on App Engine and update the credentials in your .env file
+* modify the slides at [views/index.html](https://github.com/thinkingserious/interactive-presentation-template/blob/master/views/index.html) and keep your assets in the /public folder
+* if you have Google Glass, [setup an App utilizing the Mirror API on App Engine](https://sendgrid.com/blog/google-glass-email/) and update the credentials in your .env file
 
 ## Info & Help ##
 
